@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
+import socketIOClient from "socket.io-client";
 import './App.css';
 
 class App extends Component {
   state = { result: {} }
 
-  // Fetch passwords after first mount
   componentDidMount() {
     this.getResult();
   }
 
   getResult = () => {
-    // Get the passwords and store them in state
-    fetch('/api/result')
-      .then(res => res.json())
-      .then(result => this.setState({ result }));
+    const endpoint = window.location.host;
+    const socket = socketIOClient(endpoint);
+
+    socket.on("FromAPI", data => this.setState({ result: data }));
   }
 
   render() {
