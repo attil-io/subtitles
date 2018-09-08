@@ -2,7 +2,6 @@ const path = require('path')
 const express = require('express')
 const http = require("http");
 const socketIo = require("socket.io");
-const axios = require("axios");
 
 const PORT = process.env.PORT || 5000
 
