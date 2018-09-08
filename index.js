@@ -3,7 +3,7 @@ const express = require('express')
 const PORT = process.env.PORT || 5000
 
 express()
-  .use(express.static(path.join(__dirname, 'public')))
+  .use(express.static(path.join(__dirname, 'client/build')))
   .get('/api/result', (req, res) => {
       const result = {
 	      field: 42,
