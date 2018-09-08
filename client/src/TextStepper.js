@@ -53,17 +53,25 @@ class TextStepper extends Component {
     return text[idx]
   }
 
+  setActiveIdx(idx) {
+    let {text} = this.state
+    if ((idx < 0) || (idx >= text.length)) {
+       return 
+    }
+    this.setState({ activeIdx: idx }) 
+  }
+
   chooserOnChange(evt) {
     this.fetchText(evt.target.value)
   }
 
 
   backOnClick(evt) {
-    console.log("back")
+    this.setActiveIdx(this.activeIdx - 1)
   }
 
   forwardOnClick(evt) {
-    console.log("forward")
+    this.setActiveIdx(this.activeIdx + 1)
   }
 
 
