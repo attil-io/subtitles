@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 
 
-class TextCreator extends Component {
+class TextStepper extends Component {
   render() {
     return (
       <div>
@@ -14,4 +14,4 @@ class TextCreator extends Component {
   }
 }
 
-export default TextCreator;
+export default TextStepper;

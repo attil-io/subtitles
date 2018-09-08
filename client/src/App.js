@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import './App.css';
 import TextDisplay from './TextDisplay.js'
-import TextCreator from './TextCreator.js'
+import TextStepper from './TextCreator.js'
 
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
   <Router>
     <div>
       <Route exact path="/" component={TextDisplay} />
-      <Route path="/create" component={TextCreator} />
+      <Route path="/step" component={TextStepper} />
     </div>
   </Router>
     );
