@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import socketIOClient from "socket.io-client";
+import url from 'url';
 import "./TextStepper.css"
 
 class Line extends Component {
@@ -14,21 +14,47 @@ class Chooser extends Component {
   render () {
          return (
 		 <div><select onChange={this.props.onchange}>
-  			<option value="volvo">Volvo</option>
-  			<option value="saab">Saab</option>
-  			<option value="mercedes">Mercedes</option>
-  			<option value="audi">Audi</option>
-		</select></div>
+		 {
+			 this.props.choices.map(function(choice, index) {
+				 return <option value={index}>{choice}</option>
+			 })
+		 }
+                 </select></div>
 	 )
   }
 }
 
 class TextStepper extends Component {
 
-  state = { text: [], activeIdx : 0 }
+  state = { titles: [],
+            text: [], activeIdx : 0 }
+
+  componentDidMount() {
+    this.listOptions()
+  }
+
+  listOptions() {
+    fetch('/api/listOfTexts')
+      .then(response => response.json())
+      .then(data => this.setState({ titles: data }));
+  }
+
+  fetchText(textIdx) {
+    fetch('/api/text' + url.format({ query: {id: textIdx}}) )
+      .then(response => response.json())
+      .then(data => this.setState({ text: data, activeIdx : 0 }));
+  }
+
+  getLine(idx) {
+    let {text} = this.state
+    if ((idx < 0) || (idx >= text.length)) {
+       return ""
+    }
+    return text[idx]
+  }
 
   chooserOnChange(evt) {
-    console.log(evt.target.value)
+    this.fetchText(evt.target.value)
   }
 
 
@@ -44,12 +70,12 @@ class TextStepper extends Component {
   render() {
     return (
       <div>
-	    <Chooser onchange={this.chooserOnChange.bind(this)} />
-	    <Line active={false} text="before1" />
-	    <Line active={false} text="before2" />
-	    <Line active={true} text="active line" />
-	    <Line active={false} text="after1" />
-	    <Line active={false} text="after2" />
+	    <Chooser choices={this.state.titles} onchange={this.chooserOnChange.bind(this)} />
+	    <Line active={false} text={this.getLine(this.state.activeIdx - 2)} />
+	    <Line active={false} text={this.getLine(this.state.activeIdx - 1)} />
+	    <Line active={true} text={this.getLine(this.state.activeIdx)} />
+	    <Line active={false} text={this.getLine(this.state.activeIdx + 1)} />
+	    <Line active={false} text={this.getLine(this.state.activeIdx + 2)} />
 
 	    <div>
 	    	<input type="button" value="&lt;" onClick={this.backOnClick.bind(this)}/>
