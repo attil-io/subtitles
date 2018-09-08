@@ -17,13 +17,10 @@ const io = socketIo(server);
 let counter = 0
 const getApiAndEmit = async socket => {
   try {
-      const result = {
-	      field: counter,
-	      another: 2 * counter
-      }
       counter = counter + 1
-      socket.emit("FromAPI", result);
+      socket.emit("text", "text " + counter);
   } catch (error) {
+    console.error(error)
     console.error(`Error: ${error.code}`);
   }
 };

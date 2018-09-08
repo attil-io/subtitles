@@ -1,27 +1,14 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 import './App.css';
+import TextDisplay from './TextDisplay.js'
+
 
 class App extends Component {
-  state = { result: {} }
-
-  componentDidMount() {
-    this.getResult();
-  }
-
-  getResult = () => {
-    const endpoint = window.location.host;
-    const socket = socketIOClient(endpoint);
-
-    socket.on("FromAPI", data => {
-	    this.setState({ result: data })
-    });
-  }
-
   render() {
     return (
       <div className="App">
-	    Result is: { this.state.result.field }
+	    <TextDisplay />
       </div>
     );
   }
