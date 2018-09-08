@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import './App.css';
 import TextDisplay from './TextDisplay.js'
-import TextStepper from './TextCreator.js'
+import TextStepper from './TextStepper.js'
 
 
 class App extends Component {
