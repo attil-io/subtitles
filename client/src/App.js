@@ -13,7 +13,9 @@ class App extends Component {
     const endpoint = window.location.host;
     const socket = socketIOClient(endpoint);
 
-    socket.on("FromAPI", data => this.setState({ result: data }));
+    socket.on("FromAPI", data => {
+	    this.setState({ result: data })
+    });
   }
 
   render() {

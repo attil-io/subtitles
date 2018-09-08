@@ -15,12 +15,14 @@ const app = express()
 const server = http.createServer(app);
 const io = socketIo(server);
 
+let counter = 0
 const getApiAndEmit = async socket => {
   try {
       const result = {
-	      field: 42,
-	      another: 43
+	      field: counter,
+	      another: 2 * counter
       }
+      counter = counter + 1
       socket.emit("FromAPI", result);
   } catch (error) {
     console.error(`Error: ${error.code}`);
