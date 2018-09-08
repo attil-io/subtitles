@@ -58,6 +58,7 @@ class TextStepper extends Component {
     if ((idx < 0) || (idx >= text.length)) {
        return 
     }
+    fetch('/api/setline' + url.format({ query: {id: idx}}))
     this.setState({ activeIdx: idx }) 
   }
 
@@ -67,11 +68,11 @@ class TextStepper extends Component {
 
 
   backOnClick(evt) {
-    this.setActiveIdx(this.activeIdx - 1)
+    this.setActiveIdx(this.state.activeIdx - 1)
   }
 
   forwardOnClick(evt) {
-    this.setActiveIdx(this.activeIdx + 1)
+    this.setActiveIdx(this.state.activeIdx + 1)
   }
 
 
