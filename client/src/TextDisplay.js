@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
+import "./TextDisplay.css"
 
 class TextDisplay extends Component {
   state = { text: "Hello :)" }
@@ -19,8 +20,10 @@ class TextDisplay extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="container">
+      <div className="content">
 	    { this.state.text }
+      </div>
       </div>
     );
   }
