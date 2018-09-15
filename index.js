@@ -20,6 +20,7 @@ const app = express()
           response = texts[id]
 
       textIdx = id 
+      lineIdx = 0
       res.json(response)
   })
   .get('/api/setline', (req, res) => {
