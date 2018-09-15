@@ -68,7 +68,7 @@ function readFiles(dirname, onFileContent, onError) {
     }
     filenames.sort()
     filenames.forEach(function(filename) {
-      fs.readFile(dirname + filename, 'utf-8', function(err, content) {
+      fs.readFileSync(dirname + filename, 'utf-8', function(err, content) {
         if (err) {
           onError(err);
           return;
