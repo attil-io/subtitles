@@ -66,6 +66,7 @@ function readFiles(dirname, onFileContent, onError) {
       onError(err);
       return;
     }
+    filenames.sort()
     filenames.forEach(function(filename) {
       fs.readFile(dirname + filename, 'utf-8', function(err, content) {
         if (err) {
