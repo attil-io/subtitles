@@ -81,16 +81,16 @@ class TextStepper extends Component {
     return (
       <div>
 	    <Chooser choices={this.state.titles} onchange={this.chooserOnChange.bind(this)} />
-	    <Line active={false} text={this.getLine(this.state.activeIdx - 2)} />
+	    <div>
+	         <input className="stepButton" type="button" value="&lt;" onClick={this.backOnClick.bind(this)}/>
+	         <input className="stepButton" type="button" value="&gt;" onClick={this.forwardOnClick.bind(this)}/>
+	    </div>
+    <Line active={false} text={this.getLine(this.state.activeIdx - 2)} />
 	    <Line active={false} text={this.getLine(this.state.activeIdx - 1)} />
 	    <Line active={true} text={this.getLine(this.state.activeIdx)} />
 	    <Line active={false} text={this.getLine(this.state.activeIdx + 1)} />
 	    <Line active={false} text={this.getLine(this.state.activeIdx + 2)} />
 
-	    <div>
-	    	<input type="button" value="&lt;" onClick={this.backOnClick.bind(this)}/>
-	    	<input type="button" value="&gt;" onClick={this.forwardOnClick.bind(this)}/>
-	    </div>
       </div>
     );
   }

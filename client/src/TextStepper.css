@@ -2,3 +2,9 @@
         color: red;
 	font-size: large;
 }
+
+.stepButton {
+	width: 20em;
+	height: 5em;
+	margin: 10px;
+}
