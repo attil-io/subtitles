@@ -31,6 +31,7 @@ class TextStepper extends Component {
 
   componentDidMount() {
     this.listOptions()
+    this.fetchText(this.state.activeIdx)
   }
 
   listOptions() {
